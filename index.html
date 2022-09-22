@@ -9,20 +9,66 @@
     <title>IMDB MOVIE</title>
 </head>
 
-<body>
-
-    <div class="h-screen bg-gray-900">
-        <div class="w-full bg-gray-800">
-            <div class="flex justify-between items-center gap-x-5 max-w-7xl mx-auto h-20">
-                <div class="flex-auto h-full w-32 bg-red-200">
-
+<body class="h-screen bg-[#191a23]">
+    <header>
+        <div class="w-full bg-[#23232e]">
+            <div class="flex justify-between items-center gap-x-5 max-w-7xl mx-auto h-20 px-6">
+                <div class="flex-auto h-full w-32 flex items-center">
+                    <h2 class="text-3xl text-white font-bold uppercase">Logo</h2>
                 </div>
-                <div class="flex-auto h-full w-64 bg-red-600 flex items-center">
-                    <input type="search" name="search" id="searchBox" placeholder="search your favourite"
-                        class="w-full px-8 py-2 focus:outline-none">
+                <div class="flex-auto h-full w-64 flex items-center">
+                    <input type="text" name="search" id="searchBox" placeholder="search your favourite"
+                        class="w-full px-8 py-2 focus:outline-none rounded-md capitalize font-bold bg-transparent border border-gray-600 text-white"
+                        onkeyup="debounceFunction()">
                 </div>
-                <div class="flex-auto h-full w-32 bg-indigo-200">
+                <div class="flex-auto h-full w-32 flex items-center justify-end">
+                    <h2 class="text-3xl text-white font-bold capitalize" onclick="test()">Favourite</h2>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="max-w-7xl mx-auto  w-full ">
+        <h1 class="text-4xl font-bold text-white mt-5">Search Results..</h1>
+        <div
+            class="max-w-2xl space-y-4 overflow-y-scroll max-h-[80vh] h-full rounded-md w-full flex flex-col items-center py-10 bg-[#23232e] border border-gray-600 shadow-md mt-10 mx-auto">
+            <div class="bg-[#191a23] w-96 h-auto overflow-hidden rounded-xl mx-10  p-4">
+                <div class="h-48 relative">
+                    <img src="https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_SX300.jpg"
+                        alt="avengers_end_game" class="w-full h-full absolute rounded-xl object-cover">
+                </div>
+                <div class="flex flex-col gap-y-7 mt-5">
+                    <h3 class="text-2xl font-bold text-white text-center capitalize">avengers endgame</h3>
 
+                    <button
+                        class="bg-[#59e6b7] text-white capitalize font-bold rounded-full px-4 py-1 w-full mx-auto">add
+                        to
+                        fav</button>
+                </div>
+            </div>
+            <div class="bg-[#191a23] w-96 overflow-hidden rounded-xl mx-10  p-4">
+                <div class="h-48 relative">
+                    <img src="https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_SX300.jpg"
+                        alt="avengers_end_game" class="w-full h-full absolute rounded-xl object-cover">
+                </div>
+                <div class="flex flex-col gap-y-7 mt-5">
+                    <h3 class="text-2xl font-bold text-white text-center capitalize">avengers endgame</h3>
+                    <button
+                        class="bg-[#59e6b7] text-white capitalize font-bold rounded-full px-4 py-1 w-full mx-auto">add
+                        to
+                        fav</button>
+                </div>
+            </div>
+            <div class="bg-[#191a23] w-96 overflow-hidden rounded-xl mx-10  p-4">
+                <div class="h-48 relative">
+                    <img src="https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_SX300.jpg"
+                        alt="avengers_end_game" class="w-full h-full absolute rounded-xl object-cover">
+                </div>
+                <div class="flex flex-col gap-y-7 mt-5">
+                    <h3 class="text-2xl font-bold text-white text-center capitalize">avengers endgame</h3>
+                    <button
+                        class="bg-[#59e6b7] text-white capitalize font-bold rounded-full px-4 py-1 w-full mx-auto">add
+                        to
+                        fav</button>
                 </div>
             </div>
         </div>
