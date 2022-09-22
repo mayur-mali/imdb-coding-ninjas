@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./css/style.css">
     <title>IMDB MOVIE</title>
 </head>
 
@@ -19,7 +20,7 @@
                 <div class="flex-auto h-full w-64 flex items-center">
                     <input type="text" name="search" id="searchBox" placeholder="search your favourite"
                         class="w-full px-8 py-2 focus:outline-none rounded-md capitalize font-bold bg-transparent border border-gray-600 text-white"
-                        onkeyup="debounceFunction()">
+                        onkeyup="debounce()">
                 </div>
                 <div class="flex-auto h-full w-32 flex items-center justify-end">
                     <h2 class="text-3xl text-white font-bold capitalize" onclick="test()">Favourite</h2>
@@ -27,50 +28,14 @@
             </div>
         </div>
     </header>
-    <div class="max-w-7xl mx-auto  w-full ">
+    <div class="max-w-7xl mx-auto   w-full ">
         <h1 class="text-4xl font-bold text-white mt-5">Search Results..</h1>
         <div
-            class="max-w-2xl space-y-4 overflow-y-scroll max-h-[80vh] h-full rounded-md w-full flex flex-col items-center py-10 bg-[#23232e] border border-gray-600 shadow-md mt-10 mx-auto">
-            <div class="bg-[#191a23] w-96 h-auto overflow-hidden rounded-xl mx-10  p-4">
-                <div class="h-48 relative">
-                    <img src="https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_SX300.jpg"
-                        alt="avengers_end_game" class="w-full h-full absolute rounded-xl object-cover">
-                </div>
-                <div class="flex flex-col gap-y-7 mt-5">
-                    <h3 class="text-2xl font-bold text-white text-center capitalize">avengers endgame</h3>
+            class="max-w-7xl space-y-4 h-[600px] movie-container overflow-y-scroll rounded-md w-full py-10 px-4 bg-[#23232e] border border-gray-600 shadow-md mt-10 mx-auto">
+            <div class="gap-10 grid lg:grid-cols-3 md:grid-cols-2  grid-cols-1" id="movie">
 
-                    <button
-                        class="bg-[#59e6b7] text-white capitalize font-bold rounded-full px-4 py-1 w-full mx-auto">add
-                        to
-                        fav</button>
-                </div>
             </div>
-            <div class="bg-[#191a23] w-96 overflow-hidden rounded-xl mx-10  p-4">
-                <div class="h-48 relative">
-                    <img src="https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_SX300.jpg"
-                        alt="avengers_end_game" class="w-full h-full absolute rounded-xl object-cover">
-                </div>
-                <div class="flex flex-col gap-y-7 mt-5">
-                    <h3 class="text-2xl font-bold text-white text-center capitalize">avengers endgame</h3>
-                    <button
-                        class="bg-[#59e6b7] text-white capitalize font-bold rounded-full px-4 py-1 w-full mx-auto">add
-                        to
-                        fav</button>
-                </div>
-            </div>
-            <div class="bg-[#191a23] w-96 overflow-hidden rounded-xl mx-10  p-4">
-                <div class="h-48 relative">
-                    <img src="https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_SX300.jpg"
-                        alt="avengers_end_game" class="w-full h-full absolute rounded-xl object-cover">
-                </div>
-                <div class="flex flex-col gap-y-7 mt-5">
-                    <h3 class="text-2xl font-bold text-white text-center capitalize">avengers endgame</h3>
-                    <button
-                        class="bg-[#59e6b7] text-white capitalize font-bold rounded-full px-4 py-1 w-full mx-auto">add
-                        to
-                        fav</button>
-                </div>
-            </div>
+
         </div>
     </div>
 
