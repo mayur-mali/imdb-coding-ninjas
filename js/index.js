@@ -19,9 +19,10 @@ function fetchMovie() {
 function showMovies(movieData) {
   const singleMovie = document.getElementById("movie");
   let div = "";
-  movieData.forEach((movie) => {
-    console.log(movie);
-    div += `
+  if (movieData) {
+    movieData.forEach((movie) => {
+      console.log(movie);
+      div += `
     <div class="bg-[#191a23] overflow-hidden rounded-xl  p-4">
     <a href="/single-movie.html?id=${movie.imdbID}">
         <div class="h-48 relative">
@@ -39,8 +40,11 @@ function showMovies(movieData) {
     </a>
 </div>
     `;
-  });
-  singleMovie.innerHTML = div || `<h1>no movie find</h1>`;
+    });
+  }
+  singleMovie.innerHTML =
+    div ||
+    `<h1 class="text-white text-4xl text-center capitalize">no movie find....</h1>`;
 }
 
 function debounceFunction(data, delay) {
