@@ -24,7 +24,7 @@ function showMovies(movieData) {
       console.log(movie);
       div += `
     <div class="bg-[#191a23] overflow-hidden rounded-xl  p-4">
-    <a href="/single-movie.html?id=${movie.imdbID}">
+    <a href="/movie-details.html?id=${movie.imdbID}">
         <div class="h-48 relative">
             <img src="${movie.Poster}" alt="${movie.Title}"
                 class="w-full h-full absolute rounded-xl object-cover">
