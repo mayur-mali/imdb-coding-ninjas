@@ -11,34 +11,47 @@
 </head>
 
 <body class="h-screen bg-[#191a23]">
-    <header>
-        <div class="w-full bg-[#23232e]">
-            <div class="flex justify-between items-center gap-x-5 max-w-7xl mx-auto h-20 px-6">
-                <div class="flex-auto h-full w-32 flex items-center">
-                    <h2 class="text-3xl text-white font-bold uppercase">Logo</h2>
-                </div>
-                <div class="flex-auto h-full w-64 flex items-center">
-                    <input type="text" name="search" id="searchBox" placeholder="search your favourite"
-                        class="w-full px-8 py-2 focus:outline-none rounded-md capitalize font-bold bg-transparent border border-gray-600 text-white"
-                        onkeyup="debounce()">
-                </div>
-                <div class="flex-auto h-full w-32 flex items-center justify-end">
-                    <h2 class="text-3xl text-white font-bold capitalize" onclick="test()">Favourite</h2>
+    <div class="w-full h-full relative">
+        <header>
+            <div class="w-full bg-[#23232e]">
+                <div class="flex justify-between items-center gap-x-5 max-w-7xl mx-auto h-20 px-6">
+                    <div class="flex-auto h-full w-32 flex items-center">
+                        <h2 class="text-3xl text-white font-bold uppercase">Logo</h2>
+                    </div>
+                    <div class="flex-auto h-full w-64 flex items-center">
+                        <input type="text" name="search" id="searchBox" placeholder="search your favourite"
+                            class="w-full px-8 py-2 focus:outline-none rounded-md capitalize font-bold bg-transparent border border-gray-600 text-white"
+                            onkeyup="debounce()">
+                    </div>
+                    <div class="flex-auto h-full w-32 flex items-center justify-end">
+                        <h2 class="text-3xl text-white font-bold capitalize cursor-pointer"
+                            onclick="favouriteMenuToggle()">
+                            Favourite</h2>
+                    </div>
                 </div>
             </div>
-        </div>
-    </header>
-    <div class="max-w-7xl mx-auto   w-full ">
-        <h1 class="text-4xl font-bold text-white mt-5">Search Results..</h1>
-        <div
-            class="max-w-7xl space-y-4 h-[600px] movie-container overflow-y-scroll rounded-md w-full py-10 px-4 bg-[#23232e] border border-gray-600 shadow-md mt-10 mx-auto">
-            <div class="gap-10 grid lg:grid-cols-3 md:grid-cols-2  grid-cols-1" id="movie">
+        </header>
+        <div class="max-w-7xl mx-auto   w-full ">
+            <h1 class="text-4xl font-bold text-white mt-5">Search Results..</h1>
+            <div
+                class="max-w-7xl space-y-4 h-[600px] movie-container overflow-y-scroll rounded-md w-full py-10 px-4 bg-[#23232e] border border-gray-600 shadow-md mt-10 mx-auto">
+                <div class="gap-10 grid lg:grid-cols-3 md:grid-cols-2  grid-cols-1" id="movie">
+
+                </div>
 
             </div>
-
         </div>
+        <aside class="p-4 w-96 h-full absolute top-0 right-0 sidebar-hidden" id="side-bar">
+            <div class="bg-zinc-700 py-4 h-full  overflow-hidden rounded-2xl w-full ">
+                <h1 class="text-2xl text-white capitalize font-bold text-center underline underline-offset-8">favourite
+                    movies</h1>
+                <div class="p-4 mt-5 space-y-4 overflow-y-auto h-[800px]" id="favourite-movie">
+
+                </div>
+
+            </div>
+        </aside>
     </div>
-
     <script src="js/index.js"></script>
 </body>
 

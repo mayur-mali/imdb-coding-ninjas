@@ -1,5 +1,8 @@
 const searchbox = document.getElementById("searchBox");
 const movieContainer = document.querySelector(".movie-container");
+let favoriteList = JSON.parse(localStorage.getItem("favoriteList")) || [];
+const favoriteMovieContainer = document.getElementById("favourite-movie");
+const sideBar = document.getElementById("side-bar");
 
 function fetchMovie() {
   if (searchbox.value.length > 0) {
@@ -18,10 +21,10 @@ function fetchMovie() {
 
 function showMovies(movieData) {
   const singleMovie = document.getElementById("movie");
+
   let div = "";
   if (movieData) {
     movieData.forEach((movie) => {
-      console.log(movie);
       div += `
     <div class="bg-[#191a23] overflow-hidden rounded-xl  p-4">
     <a href="/movie-details.html?id=${movie.imdbID}">
@@ -31,13 +34,12 @@ function showMovies(movieData) {
         </div>
         <div class="flex flex-col gap-y-7 mt-5">
             <h3 class="text-2xl font-bold text-white text-center capitalize">${movie.Title}</h3>
-
-            <button
-                class="bg-[#59e6b7] text-white capitalize font-bold rounded-full px-4 py-1 w-full mx-auto">add
-                to
-                fav</button>
+           
+           
         </div>
     </a>
+    <button class="bg-[#59e6b7] z-30 text-white capitalize font-bold rounded-full px-4 py-1 w-full mx-auto"
+    onclick="addTofavourite(this)" id=${movie.imdbID}>add</button>
 </div>
     `;
     });
@@ -56,5 +58,69 @@ function debounceFunction(data, delay) {
     }, delay);
   };
 }
+
+function favouriteMenuToggle() {
+  sideBar.classList.toggle("sidebar-hidden");
+}
+
+function addTofavourite(movieId) {
+  fetch(`http://www.omdbapi.com/?i=${movieId.id}&apikey=79cadf06`)
+    .then((response) => response.json())
+    .then((data) => {
+      if ((data.Response = "True")) {
+        favoriteList.push(data);
+        localStorage.setItem("favoriteList", JSON.stringify(favoriteList));
+        favouriteMovieList();
+      }
+    });
+}
+
+function deleteFavouriteMovie(id) {
+  deleteMovie = favoriteList.splice(id, 1);
+  localStorage.setItem("favoriteList", JSON.stringify(favoriteList));
+  favouriteMovieList();
+}
+
+function favouriteMovieList() {
+  let div = "";
+  favoriteList.forEach((movie, id) => {
+    div += `
+   
+    <div class="bg-[#23232e] relative flex gap-x-3 h-28 p-3 rounded-xl">
+    <a href="/movie-details.html?id=${movie.imdbID}">
+    <img src="${movie.Poster}"
+        alt="${movie.Title}" class="h-full w-32 flex-none rounded-xl object-cover">
+        </a>
+    <div class="w-32 flex flex-col justify-between">
+        <h2 class="text-white text-lg font-bold capitalize truncate">${movie.Title}</h2>
+        <div class=" text-md flex w-16 justify-between items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-orange-500">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+            </svg>
+
+            <span class="text-white font-bold">
+            ${movie.imdbRating}
+            </span>
+        </div>
+    </div>
+   
+    <span class="cursor-pointer" onclick="deleteFavouriteMovie(${id})">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+            stroke-width="1.5" stroke="currentColor"
+            class="w-10 h-10 absolute right-3 bottom-3 rounded-full text-black p-2 bg-white">
+            <path stroke-linecap="round" stroke-linejoin="round"
+                d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+        </svg>
+
+    </span>
+</div>
+
+    `;
+  });
+  favoriteMovieContainer.innerHTML = div || `<h2>No movie's in favourite</h2>`;
+}
+favouriteMovieList();
 
 const debounce = debounceFunction(fetchMovie, 1000);
