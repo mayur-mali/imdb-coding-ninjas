@@ -10,41 +10,61 @@
     <title>IMDB MOVIE</title>
 </head>
 
-<body class="h-screen bg-[#191a23]">
-    <div class="w-full h-full relative">
-        <header>
-            <div class="w-full bg-[#23232e]">
+<body class="min-h-screen h-full bg-[#191a23]">
+    <div class="w-full h-full relative ">
+        <header
+            class="w-full h-full relative bg-[url('https://assets.nflxext.com/ffe/siteui/vlv3/45082c39-e6d5-4b02-8867-e38fe32ed3af/4b49769b-ddbc-406a-a26b-482024a66727/IN-en-20220919-popsignuptwoweeks-perspective_alpha_website_large.jpg')] bg-no-repeat bg-cover h-[18rem]">
+            <div class="w-full bg-[#23232e] bg-opacity-40 absolute top-0">
                 <div class="flex justify-between items-center gap-x-5 max-w-7xl mx-auto h-20 px-6">
                     <div class="flex-auto h-full w-32 flex items-center">
                         <h2 class="text-3xl text-white font-bold uppercase">Logo</h2>
                     </div>
+
+                    <div class="flex-auto h-full w-32 flex items-center justify-end">
+                        <h2 class="text-3xl text-white font-bold capitalize cursor-pointer"
+                            onclick="favouriteMenuOpen()">
+                            Favourite</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full   absolute -bottom-10">
+                <div
+                    class="flex rounded-md justify-between bg-[#23232e] items-center gap-x-5 max-w-4xl mx-auto h-20 px-6">
                     <div class="flex-auto h-full w-64 flex items-center">
                         <input type="text" name="search" id="searchBox" placeholder="search your favourite"
                             class="w-full px-8 py-2 focus:outline-none rounded-md capitalize font-bold bg-transparent border border-gray-600 text-white"
                             onkeyup="debounce()">
                     </div>
-                    <div class="flex-auto h-full w-32 flex items-center justify-end">
-                        <h2 class="text-3xl text-white font-bold capitalize cursor-pointer"
-                            onclick="favouriteMenuToggle()">
-                            Favourite</h2>
-                    </div>
                 </div>
             </div>
         </header>
-        <div class="max-w-7xl mx-auto   w-full ">
-            <h1 class="text-4xl font-bold text-white mt-5">Search Results..</h1>
+        <div class="max-w-7xl mx-auto px-6 w-full py-10">
             <div
-                class="max-w-7xl space-y-4 h-[600px] movie-container overflow-y-scroll rounded-md w-full py-10 px-4 bg-[#23232e] border border-gray-600 shadow-md mt-10 mx-auto">
+                class="max-w-7xl space-y-4 h-[600px] movie-container overflow-y-scroll rounded-md w-full py-8 px-4 bg-[#23232e] border border-gray-600 shadow-md mt-10 mx-auto">
                 <div class="gap-10 grid lg:grid-cols-3 md:grid-cols-2  grid-cols-1" id="movie">
+                    <div class="col-span-3">
+                        <h1 class="text-4xl text-center font-bold text-white my-5">Search Results..</h1>
+                    </div>
 
                 </div>
 
             </div>
         </div>
+
         <aside class="p-4 w-96 h-full absolute top-0 right-0 sidebar-hidden" id="side-bar">
             <div class="bg-zinc-700 py-4 h-full  overflow-hidden rounded-2xl w-full ">
-                <h1 class="text-2xl text-white capitalize font-bold text-center underline underline-offset-8">favourite
-                    movies</h1>
+                <div class="flex justify-between items-center px-4">
+                    <h1 class="text-2xl text-white capitalize font-bold text-center underline underline-offset-8">
+                        favourite
+                        movies</h1>
+                    <span onclick="favouriteMenuClose()">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-6 text-white cursor-pointer">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+
+                    </span>
+                </div>
                 <div class="p-4 mt-5 space-y-4 overflow-y-auto h-[800px]" id="favourite-movie">
 
                 </div>

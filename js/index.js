@@ -4,6 +4,7 @@ let favoriteList = JSON.parse(localStorage.getItem("favoriteList")) || [];
 const favoriteMovieContainer = document.getElementById("favourite-movie");
 const sideBar = document.getElementById("side-bar");
 
+// fetch the list of movies from api which is match with the value of searchbox
 function fetchMovie() {
   if (searchbox.value.length > 0) {
     movieContainer.style = "display: block";
@@ -19,6 +20,7 @@ function fetchMovie() {
   }
 }
 
+// show the movies which fetch by the api and show on the page
 function showMovies(movieData) {
   const singleMovie = document.getElementById("movie");
 
@@ -26,21 +28,30 @@ function showMovies(movieData) {
   if (movieData) {
     movieData.forEach((movie) => {
       div += `
-    <div class="bg-[#191a23] overflow-hidden rounded-xl  p-4">
-    <a href="/movie-details.html?id=${movie.imdbID}">
-        <div class="h-48 relative">
-            <img src="${movie.Poster}" alt="${movie.Title}"
-                class="w-full h-full absolute rounded-xl object-cover">
-        </div>
-        <div class="flex flex-col gap-y-7 mt-5">
-            <h3 class="text-2xl font-bold text-white text-center capitalize">${movie.Title}</h3>
-           
-           
-        </div>
-    </a>
-    <button class="bg-[#59e6b7] z-30 text-white capitalize font-bold rounded-full px-4 py-1 w-full mx-auto"
-    onclick="addTofavourite(this)" id=${movie.imdbID}>add</button>
-</div>
+      <div class="bg-[#191a23] overflow-hidden rounded-xl relative p-4">
+                        <a href="/movie-details.html?id=${movie.imdbID}">
+                            <div class="h-48 relative">
+                                <img src="${movie.Poster}"
+                                    alt="${movie.Poster}" class="w-full h-full absolute rounded-xl object-cover">
+                                <div class="absolute bg-black top-0 h-full w-full rounded-xl bg-opacity-50">
+                                    <div class="flex h-full items-end p-4 justify-between">
+                                        <h3 class="text-2xl font-bold text-white text-center truncate capitalize">
+                                        ${movie.Title}</h3>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </a>
+                        <span class="absolute top-10 right-10 cursor-pointer"  onclick="addTofavourite(this)" id=${movie.imdbID}>
+                            <svg xmlns="http://www.w3.org/2000/svg"    viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="w-6 h-6 text-white">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+                            </svg>
+
+                        </span>
+                    </div>
     `;
     });
   }
@@ -49,6 +60,7 @@ function showMovies(movieData) {
     `<h1 class="text-white text-4xl text-center capitalize">no movie find....</h1>`;
 }
 
+// debounce function for make better performance of search api
 function debounceFunction(data, delay) {
   let timer;
   return function (...args) {
@@ -59,10 +71,20 @@ function debounceFunction(data, delay) {
   };
 }
 
-function favouriteMenuToggle() {
-  sideBar.classList.toggle("sidebar-hidden");
+const debounce = debounceFunction(fetchMovie, 1000);
+
+// open the favorite movie section
+function favouriteMenuOpen() {
+  sideBar.classList.remove("sidebar-hidden");
+  // call the favoritemovie list function
+  favouriteMovieList();
+}
+// close the favorite movie section
+function favouriteMenuClose() {
+  sideBar.classList.add("sidebar-hidden");
 }
 
+// add movie to favorite movie list and store into localStorage for keep this after refresh also
 function addTofavourite(movieId) {
   fetch(`http://www.omdbapi.com/?i=${movieId.id}&apikey=79cadf06`)
     .then((response) => response.json())
@@ -71,16 +93,19 @@ function addTofavourite(movieId) {
         favoriteList.push(data);
         localStorage.setItem("favoriteList", JSON.stringify(favoriteList));
         favouriteMovieList();
+        alert("Added to favorites list");
       }
     });
 }
 
+// completely remove movie from the favorite movie list
 function deleteFavouriteMovie(id) {
   deleteMovie = favoriteList.splice(id, 1);
   localStorage.setItem("favoriteList", JSON.stringify(favoriteList));
   favouriteMovieList();
 }
 
+// fetching favorites movie from localStorage and showing onto favorite list
 function favouriteMovieList() {
   let div = "";
   favoriteList.forEach((movie, id) => {
@@ -119,8 +144,7 @@ function favouriteMovieList() {
 
     `;
   });
-  favoriteMovieContainer.innerHTML = div || `<h2>No movie's in favourite</h2>`;
+  favoriteMovieContainer.innerHTML =
+    div ||
+    `<h2 class="text-white text-2xl font-bold">No movie's in favourite List</h2>`;
 }
-favouriteMovieList();
-
-const debounce = debounceFunction(fetchMovie, 1000);
