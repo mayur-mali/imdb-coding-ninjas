@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>single movie</title>
+</head>
+
+<body class="min-h-screen  h-auto bg-[#191a23] flex justify-center items-center">
+
+    <div class="h-full w-full ">
+        <div class="max-w-4xl w-full p-8  rounded-xl mx-auto bg-[#23232e]" id="single-movie-details" id="movie-screen">
+        </div>
+        <span class="absolute top-10 left-10 cursor-pointer">
+            <a href="/">
+
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-10 font-bold h-6 text-white">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                </svg>
+            </a>
+
+        </span>
+        <div class="h-screen absolute w-full top-0 z-40  bg-[#191a23] flex justify-center items-center "
+            id="loadin-screen">
+            <h1 class="text-6xl text-white animate-pulse">Loading....</h1>
+        </div>
+        <script src="./js/singlemovie.js"></script>
+</body>
+
+</html>

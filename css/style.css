@@ -1,0 +1,23 @@
+/* hide scrollbar but allow scrolling */
+.movie-container,
+#favourite-movie {
+  -ms-overflow-style: none;
+  /* for Internet Explorer, Edge */
+  scrollbar-width: none;
+  /* for Firefox */
+  overflow-y: scroll;
+}
+
+.movie-container::-webkit-scrollbar,
+#favourite-movie::-webkit-scrollbar {
+  display: none;
+  /* for Chrome, Safari, and Opera */
+}
+
+.movie-container {
+  display: none;
+}
+
+.sidebar-hidden {
+  display: none;
+}
