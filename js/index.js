@@ -26,10 +26,12 @@ function showMovies(movieData) {
 
   let div = "";
   if (movieData) {
+    //  {if you want to use on localhost just remove /imdb-coding-ninjas/ from a tag}
     movieData.forEach((movie) => {
       div += `
       <div class="bg-[#191a23] overflow-hidden rounded-xl relative p-4">
-                        <a href="/movie-details.html?id=${movie.imdbID}">
+
+                        <a href="/imdb-coding-ninjas/movie-details.html?id=${movie.imdbID}">
                             <div class="h-48 relative">
                                 <img src="${movie.Poster}"
                                     alt="${movie.Poster}" class="w-full h-full absolute rounded-xl object-cover">
