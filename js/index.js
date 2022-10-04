@@ -62,19 +62,6 @@ function showMovies(movieData) {
     `<h1 class="text-white text-4xl text-center capitalize">no movie find....</h1>`;
 }
 
-// debounce function for make better performance of search api
-function debounceFunction(data, delay) {
-  let timer;
-  return function (...args) {
-    if (timer) clearTimeout(timer);
-    timer = setTimeout(() => {
-      data();
-    }, delay);
-  };
-}
-
-const debounce = debounceFunction(fetchMovie, 1000);
-
 // open the favorite movie section
 function favouriteMenuOpen() {
   sideBar.classList.remove("sidebar-hidden");
