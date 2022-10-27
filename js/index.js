@@ -101,7 +101,7 @@ function favouriteMovieList() {
     div += `
    
     <div class="bg-[#23232e] relative flex gap-x-3 h-28 p-3 rounded-xl">
-    <a href="/movie-details.html?id=${movie.imdbID}">
+    <a href="/imdb-coding-ninjas/movie-details.html?id=${movie.imdbID}">
     <img src="${movie.Poster}"
         alt="${movie.Title}" class="h-full w-32 flex-none rounded-xl object-cover">
         </a>
